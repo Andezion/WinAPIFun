@@ -29,7 +29,7 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
         return 1;
     }
 
-    const HWND hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, class_name, "Window", WS_CAPTION,
+    const HWND hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, class_name, "Window", WS_MAXIMIZE,
                                      CW_USEDEFAULT, CW_USEDEFAULT, 240, 120, nullptr, nullptr, hInstance, nullptr);
 
     if ( hwnd == nullptr )
