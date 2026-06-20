@@ -29,7 +29,7 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
         return 1;
     }
 
-    const HWND hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, class_name, "Window", WS_OVERLAPPEDWINDOW,
+    const HWND hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, class_name, "Window", WS_CAPTION,
                                      CW_USEDEFAULT, CW_USEDEFAULT, 240, 120, nullptr, nullptr, hInstance, nullptr);
 
     if ( hwnd == nullptr )
@@ -41,7 +41,7 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
     ShowWindow( hwnd, nShowCmd );
     UpdateWindow( hwnd );
 
-    while ( GetMessage( & message, NULL, 0, 0 ) )
+    while ( GetMessage( & message, nullptr, 0, 0 ) )
     {
         TranslateMessage( & message );
         DispatchMessage( & message );
