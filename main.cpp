@@ -38,7 +38,7 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
                                      CW_USEDEFAULT, CW_USEDEFAULT, 1000, 600, nullptr, nullptr, hInstance, nullptr);
 
     button1 = CreateWindowEx( 0, "BUTTON", "Standart button", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
-                            100, 100, 150, 30, hwnd, NULL, hInstance, NULL );
+                            100, 100, 150, 30, hwnd, reinterpret_cast<HMENU>(1004), hInstance, NULL );
 
     button2 = CreateWindowEx( 0, "BUTTON", "Checkbox button", WS_CHILD | WS_VISIBLE | BS_CHECKBOX,
                             100, 200, 150, 30, hwnd, NULL, hInstance, NULL );
@@ -50,7 +50,7 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
                             100, 400, 150, 30, hwnd, NULL, hInstance, NULL );
 
     HWND hText = CreateWindowEx( 0, "EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 50, 50, 150, 20,
-hwnd, NULL, hInstance, NULL );
+                            hwnd, NULL, hInstance, NULL );
 
 
     if ( hwnd == nullptr )
@@ -82,6 +82,18 @@ LRESULT CALLBACK WndProc(const HWND hwnd, const UINT msg, const WPARAM wParam, c
         case WM_DESTROY:
             PostQuitMessage( 0 );
         break;
+
+        case WM_COMMAND:
+        {
+            switch (LOWORD(wParam))
+            {
+                case 1004:
+                    MessageBox(hwnd, "Button4 clicked!", "Info", MB_OK);
+                break;
+                default: ;
+            }
+            break;
+        }
 
         default:
             return DefWindowProc( hwnd, msg, wParam, lParam );
