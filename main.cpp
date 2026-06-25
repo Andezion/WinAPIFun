@@ -53,8 +53,19 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
                             hwnd, NULL, hInstance, NULL );
 
     HWND hText1 = CreateWindowEx( WS_EX_CLIENTEDGE, "EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER |
-WS_VSCROLL | ES_MULTILINE | ES_AUTOVSCROLL, 5, 5, 150, 150, hwnd, NULL, hInstance, NULL );
+WS_VSCROLL | ES_MULTILINE | ES_AUTOVSCROLL, 300, 5, 150, 150, hwnd, NULL, hInstance, NULL );
 
+    HWND hListBox = CreateWindowEx( WS_EX_CLIENTEDGE, "LISTBOX", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER,
+600, 5, 150, 200, hwnd, NULL, hInstance, NULL );
+
+    SendMessage( hListBox, LB_ADDSTRING, 0,( LPARAM ) "Element 1" );
+    SendMessage( hListBox, LB_ADDSTRING, 0,( LPARAM ) "Element 2" );
+
+    HWND hCombo = CreateWindowEx( WS_EX_CLIENTEDGE, "COMBOBOX", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | CBS_DROPDOWN,
+300, 200, 150, 200, hwnd, NULL, hInstance, NULL );
+
+    SendMessage( hCombo, CB_ADDSTRING, 0,( LPARAM ) "Element 1" );
+    SendMessage( hCombo, CB_ADDSTRING, 0,( LPARAM ) "Element 2" );
 
     if ( hwnd == nullptr )
     {
