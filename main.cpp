@@ -3,6 +3,11 @@
 LPSTR class_name = "Test Shit";
 MSG message;
 
+HWND button1;
+HWND button2;
+HWND button3;
+HWND button4;
+
 LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam );
 
 int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, const int nShowCmd )
@@ -29,8 +34,20 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
         return 1;
     }
 
-    const HWND hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, class_name, "Window", WS_MAXIMIZE,
-                                     CW_USEDEFAULT, CW_USEDEFAULT, 240, 120, nullptr, nullptr, hInstance, nullptr);
+    const HWND hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, class_name, "Window", WS_OVERLAPPEDWINDOW,
+                                     CW_USEDEFAULT, CW_USEDEFAULT, 1000, 600, nullptr, nullptr, hInstance, nullptr);
+
+    button1 = CreateWindowEx( 0, "BUTTON", "Standart button", WS_CHILD | WS_VISIBLE,
+                            100, 100, 150, 30, hwnd, NULL, hInstance, NULL );
+
+    button2 = CreateWindowEx( 0, "BUTTON", "Checkbox button", WS_CHILD | WS_VISIBLE | BS_CHECKBOX,
+                            100, 200, 150, 30, hwnd, NULL, hInstance, NULL );
+
+    button3 = CreateWindowEx( 0, "BUTTON", "Radio button", WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
+                            100, 300, 150, 30, hwnd, NULL, hInstance, NULL );
+
+    button4 = CreateWindowEx( 0, "BUTTON", "Groupbox button", WS_CHILD | WS_VISIBLE | BS_GROUPBOX,
+                            100, 400, 150, 30, hwnd, NULL, hInstance, NULL );
 
     if ( hwnd == nullptr )
     {
