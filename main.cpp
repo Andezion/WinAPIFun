@@ -38,16 +38,16 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
                                      CW_USEDEFAULT, CW_USEDEFAULT, 1000, 600, nullptr, nullptr, hInstance, nullptr);
 
     button1 = CreateWindowEx( 0, "BUTTON", "Standart button", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
-                            100, 100, 150, 30, hwnd, reinterpret_cast<HMENU>(1004), hInstance, NULL );
+                            100, 100, 150, 30, hwnd, reinterpret_cast<HMENU>(1001), hInstance, NULL );
 
     button2 = CreateWindowEx( 0, "BUTTON", "Checkbox button", WS_CHILD | WS_VISIBLE | BS_CHECKBOX,
-                            100, 200, 150, 30, hwnd, NULL, hInstance, NULL );
+                            100, 200, 150, 30, hwnd, reinterpret_cast<HMENU>(1002), hInstance, NULL );
 
     button3 = CreateWindowEx( 0, "BUTTON", "Radio button", WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
-                            100, 300, 150, 30, hwnd, NULL, hInstance, NULL );
+                            100, 300, 150, 30, hwnd, reinterpret_cast<HMENU>(1003), hInstance, NULL );
 
     button4 = CreateWindowEx( 0, "BUTTON", "Groupbox button", WS_CHILD | WS_VISIBLE | BS_GROUPBOX,
-                            100, 400, 150, 30, hwnd, NULL, hInstance, NULL );
+                            100, 400, 150, 30, hwnd, reinterpret_cast<HMENU>(1004), hInstance, NULL );
 
     HWND hText = CreateWindowEx( 0, "EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 50, 50, 150, 20,
                             hwnd, NULL, hInstance, NULL );
@@ -87,6 +87,15 @@ LRESULT CALLBACK WndProc(const HWND hwnd, const UINT msg, const WPARAM wParam, c
         {
             switch (LOWORD(wParam))
             {
+                case 1001:
+                    MessageBox(hwnd, "Button1 clicked!", "Info", MB_OK);
+                break;
+                case 1002:
+                    MessageBox(hwnd, "Button2 clicked!", "Info", MB_OK);
+                break;
+                case 1003:
+                    MessageBox(hwnd, "Button3 clicked!", "Info", MB_OK);
+                break;
                 case 1004:
                     MessageBox(hwnd, "Button4 clicked!", "Info", MB_OK);
                 break;
