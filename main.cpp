@@ -1,3 +1,5 @@
+#include <iostream>
+#include <ostream>
 #include <windows.h>
 
 LPSTR class_name = "Test Shit";
@@ -43,11 +45,20 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
     button2 = CreateWindowEx( 0, "BUTTON", "Checkbox button", WS_CHILD | WS_VISIBLE | BS_CHECKBOX,
                             100, 200, 150, 30, hwnd, reinterpret_cast<HMENU>(1002), hInstance, NULL );
 
+    CheckDlgButton( hwnd, 1002, BST_CHECKED ); //
+    // CheckDlgButton( hwnd, ID_CHECKBOX1, BST_UNCHECKED ); //
+
     button3 = CreateWindowEx( 0, "BUTTON", "Radio button", WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
                             100, 300, 150, 30, hwnd, reinterpret_cast<HMENU>(1003), hInstance, NULL );
 
     button4 = CreateWindowEx( 0, "BUTTON", "Groupbox button", WS_CHILD | WS_VISIBLE | BS_GROUPBOX,
                             100, 400, 150, 30, hwnd, reinterpret_cast<HMENU>(1004), hInstance, NULL );
+
+    int ID_CHECKBOX1 = GetDlgCtrlID( button4 );
+    std::cout << ID_CHECKBOX1 << std::endl;
+
+    bool bChecked = ( IsDlgButtonChecked( hwnd, 1002 ) == BST_CHECKED );
+    std::cout << bChecked << std::endl;
 
     HWND hText = CreateWindowEx( 0, "EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 500, 500, 150, 20,
                             hwnd, NULL, hInstance, NULL );
@@ -69,6 +80,12 @@ WS_VSCROLL | ES_MULTILINE | ES_AUTOVSCROLL, 300, 5, 150, 150, hwnd, NULL, hInsta
 
     HWND hStatic = CreateWindowEx( 0, "STATIC", NULL, WS_CHILD | WS_VISIBLE |
 SS_LEFT, 700, 250, 150, 200, hwnd, NULL, hInstance, NULL );
+
+    SetWindowText( hStatic, "Text" );
+
+    HWND hStaticIcon = CreateWindowEx( 0, "STATIC", NULL, WS_CHILD | WS_VISIBLE |
+SS_ICON, 50, 50, 48, 48, hwnd, NULL, hInstance, NULL );
+    SendMessage( hStaticIcon, STM_SETICON,( WPARAM ) LoadIcon( NULL, IDI_APPLICATION ), 0 );
 
     if ( hwnd == nullptr )
     {
