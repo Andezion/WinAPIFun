@@ -60,6 +60,7 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
     bool bChecked = ( IsDlgButtonChecked( hwnd, 1002 ) == BST_CHECKED );
     std::cout << bChecked << std::endl;
 
+
     HWND hText = CreateWindowEx( 0, "EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 500, 500, 150, 20,
                             hwnd, NULL, hInstance, NULL );
 
