@@ -49,6 +49,10 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
     button4 = CreateWindowEx( 0, "BUTTON", "Groupbox button", WS_CHILD | WS_VISIBLE | BS_GROUPBOX,
                             100, 400, 150, 30, hwnd, NULL, hInstance, NULL );
 
+    HWND hText = CreateWindowEx( 0, "EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER, 50, 50, 150, 20,
+hwnd, NULL, hInstance, NULL );
+
+
     if ( hwnd == nullptr )
     {
         MessageBox( nullptr, "window is nor working", "lol", MB_ICONEXCLAMATION );
@@ -63,6 +67,7 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
         TranslateMessage( & message );
         DispatchMessage( & message );
     }
+
     return message.wParam;
 }
 
