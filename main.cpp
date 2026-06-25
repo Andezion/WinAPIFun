@@ -37,16 +37,16 @@ int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpC
     const HWND hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, class_name, "Window", WS_OVERLAPPEDWINDOW,
                                      CW_USEDEFAULT, CW_USEDEFAULT, 1000, 600, nullptr, nullptr, hInstance, nullptr);
 
-    button1 = CreateWindowEx( 0, "BUTTON1", "Standart button", WS_CHILD | WS_VISIBLE,
+    button1 = CreateWindowEx( 0, "BUTTON", "Standart button", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
                             100, 100, 150, 30, hwnd, NULL, hInstance, NULL );
 
-    button2 = CreateWindowEx( 0, "BUTTON2", "Checkbox button", WS_CHILD | WS_VISIBLE | BS_CHECKBOX,
+    button2 = CreateWindowEx( 0, "BUTTON", "Checkbox button", WS_CHILD | WS_VISIBLE | BS_CHECKBOX,
                             100, 200, 150, 30, hwnd, NULL, hInstance, NULL );
 
-    button3 = CreateWindowEx( 0, "BUTTON3", "Radio button", WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
+    button3 = CreateWindowEx( 0, "BUTTON", "Radio button", WS_CHILD | WS_VISIBLE | BS_RADIOBUTTON,
                             100, 300, 150, 30, hwnd, NULL, hInstance, NULL );
 
-    button4 = CreateWindowEx( 0, "BUTTON4", "Groupbox button", WS_CHILD | WS_VISIBLE | BS_GROUPBOX,
+    button4 = CreateWindowEx( 0, "BUTTON", "Groupbox button", WS_CHILD | WS_VISIBLE | BS_GROUPBOX,
                             100, 400, 150, 30, hwnd, NULL, hInstance, NULL );
 
     if ( hwnd == nullptr )
