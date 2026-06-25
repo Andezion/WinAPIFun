@@ -67,6 +67,9 @@ WS_VSCROLL | ES_MULTILINE | ES_AUTOVSCROLL, 300, 5, 150, 150, hwnd, NULL, hInsta
     SendMessage( hCombo, CB_ADDSTRING, 0,( LPARAM ) "Element 1" );
     SendMessage( hCombo, CB_ADDSTRING, 0,( LPARAM ) "Element 2" );
 
+    HWND hStatic = CreateWindowEx( 0, "STATIC", NULL, WS_CHILD | WS_VISIBLE |
+SS_LEFT, 700, 250, 150, 200, hwnd, NULL, hInstance, NULL );
+
     if ( hwnd == nullptr )
     {
         MessageBox( nullptr, "window is nor working", "lol", MB_ICONEXCLAMATION );
