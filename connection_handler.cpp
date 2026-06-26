@@ -47,13 +47,35 @@ void print_tcp_connection()
     free(tcp_table);
 }
 
-int main()
-{
-    WSADATA wsa_data;
-    WSAStartup(MAKEWORD(2, 2), &wsa_data);
+int main() {
+    WSADATA wsaData;
+    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        std::cerr << "WSAStartup failed." << std::endl;
+        return 1;
+    }
 
-    print_tcp_connection();
+    ULONG size = 0;
+    GetExtendedTcpTable(nullptr, &size, FALSE, AF_INET, TCP_TABLE_OWNER_PID_ALL, 0);
 
+    PMIB_TCPTABLE_OWNER_PID pTcpTable = (PMIB_TCPTABLE_OWNER_PID)malloc(size);
+
+    if (GetExtendedTcpTable(pTcpTable, &size, FALSE, AF_INET, TCP_TABLE_OWNER_PID_ALL, 0) == NO_ERROR) {
+        std::cout << "Local Address\tLocal Port\tRemote Address\tRemote Port\tPID\n";
+        std::cout << "-------------------------------------------------------------------\n";
+
+        for (DWORD i = 0; i < pTcpTable->dwNumEntries; i++) {
+            MIB_TCPROW_OWNER_PID row = pTcpTable->table[i];
+            std::cout << ip_to_string(row.dwLocalAddr) << "\t"
+                      << ntohs((WORD)row.dwLocalPort) << "\t\t"
+                      << ip_to_string(row.dwRemoteAddr) << "\t"
+                      << ntohs((WORD)row.dwRemotePort) << "\t\t"
+                      << row.dwOwningPid << "\n";
+        }
+    } else {
+        std::cerr << "Failed to get TCP table." << std::endl;
+    }
+
+    free(pTcpTable);
     WSACleanup();
     return 0;
 }
