@@ -11,6 +11,8 @@ HWND button2;
 HWND button3;
 HWND button4;
 
+bool mouse = false;
+
 LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam );
 
 int WINAPI WinMain(const HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, const int nShowCmd )
@@ -121,10 +123,22 @@ LRESULT CALLBACK WndProc(const HWND hwnd, const UINT msg, const WPARAM wParam, c
 
         case WM_LBUTTONDOWN:
         {
-            HDC hdc = GetDC( hwnd );
-            LineTo( hdc, LOWORD( lParam ), HIWORD( lParam ) );
-            ReleaseDC( hwnd, hdc );
+            mouse = true;
+            SendMessage( hwnd, WM_MOUSEMOVE, wParam, lParam );
         }
+        break;
+
+        case WM_LBUTTONUP:
+            mouse = false;
+        break;
+
+        case WM_MOUSEMOVE:
+            if( mouse )
+            {
+                HDC hdc = GetDC( hwnd );
+                SetPixel( hdc, LOWORD( lParam ), HIWORD( lParam ), RGB( 255, 0, 0 ) );
+                ReleaseDC( hwnd, hdc );
+            }
         break;
 
         case WM_LBUTTONDBLCLK:
