@@ -119,6 +119,22 @@ LRESULT CALLBACK WndProc(const HWND hwnd, const UINT msg, const WPARAM wParam, c
             PostQuitMessage( 0 );
         break;
 
+        case WM_LBUTTONDOWN:
+        {
+            HDC hdc = GetDC( hwnd );
+            LineTo( hdc, LOWORD( lParam ), HIWORD( lParam ) );
+            ReleaseDC( hwnd, hdc );
+        }
+        break;
+
+        case WM_LBUTTONDBLCLK:
+        {
+            HDC hdc = GetDC( hwnd );
+            Ellipse( hdc, LOWORD( lParam ) - 3, HIWORD( lParam ) - 3, LOWORD( lParam ) + 3, HIWORD( lParam ) + 3 );
+            ReleaseDC( hwnd, hdc );
+        }
+        break;
+
         case WM_COMMAND:
         {
             switch (LOWORD(wParam))
