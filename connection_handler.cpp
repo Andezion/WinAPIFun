@@ -1,5 +1,15 @@
 #include "connection_handler.h"
 
+std::string ip_to_string(DWORD ip)
+{
+    in_addr addr;
+    addr.s_addr = ip;
+
+    char str[INET_ADDRSTRLEN];
+    inet_ntop(AF_INET, &addr, str, sizeof(str));
+    return std::string(str);
+}
+
 void print_tcp_connection()
 {
     PMIB_TCPTABLE_OWNER_PID tcp_table{};

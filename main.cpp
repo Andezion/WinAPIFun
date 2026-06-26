@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ostream>
 #include <windows.h>
+#include "connection_handler.h"
 
 LPSTR class_name = "Test Shit";
 MSG message;
