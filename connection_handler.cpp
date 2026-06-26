@@ -37,3 +37,13 @@ void print_tcp_connection()
     free(tcp_table);
 }
 
+int main()
+{
+    WSADATA wsa_data;
+    WSAStartup(MAKEWORD(2, 2), &wsa_data);
+
+    print_tcp_connection();
+
+    WSACleanup();
+    return 0;
+}
